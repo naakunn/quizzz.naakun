@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+  <!-- Place favicon.ico in the root directory -->
+
+  <!-- <link rel="stylesheet" href="css/normalize.css" /> -->
+  <!-- <link rel="stylesheet" href="css/main.css" /> -->
+
+  <meta name="theme-color" content="#fafafa" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div id="js-question" class="mt-5  alert alert-primary" role="alert">
+        A simple primary alert—check it out!
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="ml-1 btn btn-primary">Primary</button>
+        <button type="button" class="ml-1 btn btn-primary">Primary</button>
+        <button type="button" class="ml-1 btn btn-primary">Primary</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+const quiz = [{
+    question: "柱の人数は？",
+    answers: [
+      "5人",
+      "6人",
+      "9人",
+      "13人",
+    ],
+    correct: "9人"
+  },
+  {
+    question: "上弦の弐に鬼の名前はなんでしょう",
+    answers: [
+      "童磨",
+      "鬼舞辻無惨",
+      "累",
+      "沼の鬼",
+    ],
+    correct: "童磨"
+  },
+  {
+    question: "虫の呼吸　蝶の舞　〇〇←〇〇に入る技名は？",
+    answers: [
+      "散れ",
+      "埋れ",
+      "腐れ",
+      "戯れ",
+    ],
+    correct: "戯れ"
+  },
+  {
+    question: "鱗滝さんは、何の呼吸使いの育てでしょうか",
+    answers: [
+      "雷",
+      "水",
+      "日",
+      "獣",
+    ],
+    correct: "水"
+  },
+  {
+    question: "時透無一郎は何柱？何の呼吸の使い？",
+    answers: [
+      "日柱　日の呼吸使い",
+      "獣柱　獣の呼吸使い",
+      "露柱　露の呼吸使い",
+      "霞柱　霞の呼吸使い",
+    ],
+    correct: "霞柱　霞の呼吸使い"
+  },
+  {
+    question: "あなたの推しは？",
+    answers: [
+      "時透無一郎",
+      "佐武直輝",
+      "佐武直輝",
+      "佐武直輝",
+    ],
+    correct: "佐武直輝"
+  }
+];
+
+const quizLength = quiz.length;
+let quizIndex = 0;
+let score = 0;
+
+const $button = document.getElementsByTagName('button');
+const buttonLength = $button.length;
+
+//クイズの問題文、選択肢を定義
+const setupQuiz = () => {
+  document.getElementById('js-question').textContent = quiz[quizIndex].question;
+  let buttonIndex = 0;
+
+  while (buttonIndex < buttonLength) {
+    $button[buttonIndex].textContent = quiz[quizIndex].answers[buttonIndex];
+    buttonIndex++;
+  }
+};
+setupQuiz();
+
+const clickHandlar = (e) => {
+  if (quiz[quizIndex].correct === e.target.textContent) {
+    alert("正解！");
+    score++;
+  } else {
+    alert("不正解！");
+  }
+
+  quizIndex++;
+
+  if (quizIndex < quizLength) {
+    //問題数がまだあればこれを実行
+    setupQuiz();
+  } else {
+    //問題数がもうなければこれを実行
+    alert("終了！あなたの正解数は" + score + "/" + quizLength + "です！");
+  }
+};
+
+let handlarIndex = 0;
+while (handlarIndex < buttonLength) {
+  $button[handlarIndex].addEventListener('click', (e) => {
+    clickHandlar(e);
+  });
+  handlarIndex++;
+}
+  </script>
+</body>
+
+</html>
